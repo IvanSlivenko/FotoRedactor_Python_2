@@ -1,0 +1,12 @@
+https://youtu.be/HKDAvG7kdmA
+
+1. створюємо проект
+2. в терміналі pip install pyqt5
+https://youtu.be/9SaXHAhlWu0
+
+3.  в терміналі pip install --upgrade Pillow
+https://pillow.readthedocs.io/en/stable/installation.html
+
+
+29 : 46
+
