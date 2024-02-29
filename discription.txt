@@ -7,6 +7,9 @@ https://youtu.be/9SaXHAhlWu0
 3.  в терміналі pip install --upgrade Pillow
 https://pillow.readthedocs.io/en/stable/installation.html
 
+4. https://ttfonts.net/ru/download/1004.htm
+файли з роширенням ttf - файли зі шрифтами
 
-01 : 28 : 20
+
+01 : 57 : 45
 

@@ -7,23 +7,43 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PIL import Image
-from PIL.ImageFilter import BLUR, DETAIL
+from PIL.ImageFilter import BLUR, DETAIL, SMOOTH
 
 class ImageProcessor:
     def __init__(self):
-        pass
+        self.image = None
+        self.dir = None
+        self.filename = None
+        self.save_dir = 'Modified'
+
 
     def load_image(self,filename):
-        pass
+        self.filename = filename
+        # fullname = os.path.join(workdir, filename)
+        self.image = Image.open(os.path.join(workdir, filename))
 
     def save_image(self):
-        pass
+        path = os.path.join(workdir, self.save_dir)
+        if not (os.path.exists(path) or os.path.isdir(path)):
+            os.mkdir(path)
+        fullname = os.path.join(path, self.filename)
+
+        self.image.save(fullname)
 
     def b_w(self):
-        pass
+        self.image = self.image.convert('L')
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
+
+
+
 
     def turn_left(self):
-        pass
+        self.image = self.image.transpose()
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
 
     def turn_right(self):
         pass
@@ -33,6 +53,10 @@ class ImageProcessor:
 
     def do_blur(self):
         pass
+
+    def show_image(self):
+        pass
+
 
 def filter_images(files,extensions):
     """esult=[]
@@ -62,6 +86,8 @@ def show_filenames_list():
 def show_info():
     my_info = QMessageBox()
     my_info.setText('Demo Photoshop\nVer.1.0=)')
+
+
 
 workdir = ''
 
