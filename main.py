@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PIL import Image
-from PIL.ImageFilter import BLUR, DETAIL, SMOOTH
+from PIL.ImageFilter import BLUR, DETAIL, SMOOTH, CONTOUR, SHARPEN
 
 class ImageProcessor:
     def __init__(self):
@@ -40,19 +40,49 @@ class ImageProcessor:
 
 
     def turn_left(self):
-        self.image = self.image.transpose()
+        self.image = self.image.transpose(Image.ROTATE_90)
         self.save_image()
         image_path = os.path.join(workdir, self.save_dir, self.filename)
         self.show_image(image_path)
 
     def turn_right(self):
-        pass
+        self.image = self.image.transpose(Image.ROTATE_270)
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
 
     def do_flip(self):
-        pass
+        self.image = self.image.transpose(Image.FLIP_LEFT_RIGHT)
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
 
     def do_blur(self):
-        pass
+        self.image = self.image.transpose(BLUR)
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
+
+    def do_sharpen(self):
+        self.image = self.image.transpose(SHARPEN)
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
+    def do_contour(self):
+        self.image = self.image.transpose(CONTOUR)
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
+    def do_detail(self):
+        self.image = self.image.transpose(DETAIL)
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
+    def do_smoth(self):
+        self.image = self.image.transpose(SMOOTH)
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
 
     def show_image(self):
         pass
@@ -86,6 +116,17 @@ def show_filenames_list():
 def show_info():
     my_info = QMessageBox()
     my_info.setText('Demo Photoshop\nVer.1.0=)')
+
+
+
+def show_shosen_image():
+    if btn_files.currentRow() >= 0:
+        filename = btn_files.currentItem().text()
+
+workimage = ImageProcessor()
+btn_files.currentRowChznged.connect(chow_chosen_image())
+
+
 
 
 

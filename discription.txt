@@ -11,5 +11,5 @@ https://pillow.readthedocs.io/en/stable/installation.html
 файли з роширенням ttf - файли зі шрифтами
 
 
-01 : 57 : 45
+02 : 07 : 48
 
