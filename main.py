@@ -7,7 +7,8 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PIL import Image
-from PIL.ImageFilter import BLUR, DETAIL, SMOOTH, CONTOUR, SHARPEN
+from PIL.ImageFilter import BLUR, DETAIL, SMOOTH, CONTOUR, SHARPEN, \
+EDGE_ENHANCE, EDGE_ENHANCE_MORE, EMBOSS, FIND_EDGES, UnsharpMask
 
 class ImageProcessor:
     def __init__(self):
@@ -84,11 +85,23 @@ class ImageProcessor:
         image_path = os.path.join(workdir, self.save_dir, self.filename)
         self.show_image(image_path)
 
+    def do_emboss(self):
+        self.image = self.image.transpose(EMBOSS)
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
+
+    def do_edge_enhance(self):
+        self.image = self.image.transpose(EDGE_ENHANCE)
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
+
     def show_image(self):
         pass
 
 
-def filter_images(files,extensions):
+def filter_images(files, extensions):
     """esult=[]
     for filename in files:
         for ext in extensions:
@@ -123,8 +136,7 @@ def show_shosen_image():
     if btn_files.currentRow() >= 0:
         filename = btn_files.currentItem().text()
 
-workimage = ImageProcessor()
-btn_files.currentRowChznged.connect(chow_chosen_image())
+
 
 
 
@@ -132,7 +144,7 @@ btn_files.currentRowChznged.connect(chow_chosen_image())
 
 workdir = ''
 
-app = QApplication()
+app = QApplication([])
 win = QWidget()
 win.resize(1200, 750)
 win.setWindowTitle("Demo Photoshop")
@@ -150,7 +162,12 @@ btn_blur = QPushButton('Blur')
 btn_contour = QPushButton('Contour')
 btn_detail = QPushButton('Detail')
 
+
+
 btn_info = QPushButton('INFO')
+
+workimage = ImageProcessor()
+btn_files.currentRowChanged.connect(show_shosen_image)
 
 row = QHBoxLayout()
 col1 = QVBoxLayout()
@@ -169,6 +186,15 @@ row_tools1.addWidget(btn_sharp)
 row_tools1.addWidget(btn_b_w)
 row_tools1.addWidget(btn_contour)
 row_tools1.addWidget(btn_detail)
+
+row_tools2 = QHBoxLayout()
+row_tools2.addWidget(btn_left)
+row_tools2.addWidget(btn_right)
+row_tools2.addWidget(btn_flip)
+row_tools2.addWidget(btn_sharp)
+row_tools2.addWidget(btn_b_w)
+row_tools2.addWidget(btn_contour)
+row_tools2.addWidget(btn_detail)
 
 col2.addLayout(row_tools1)
 
