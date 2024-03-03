@@ -37,9 +37,6 @@ class ImageProcessor:
         image_path = os.path.join(workdir, self.save_dir, self.filename)
         self.show_image(image_path)
 
-
-
-
     def turn_left(self):
         self.image = self.image.transpose(Image.ROTATE_90)
         self.save_image()
@@ -69,16 +66,19 @@ class ImageProcessor:
         self.save_image()
         image_path = os.path.join(workdir, self.save_dir, self.filename)
         self.show_image(image_path)
+
     def do_contour(self):
         self.image = self.image.transpose(CONTOUR)
         self.save_image()
         image_path = os.path.join(workdir, self.save_dir, self.filename)
         self.show_image(image_path)
+
     def do_detail(self):
         self.image = self.image.transpose(DETAIL)
         self.save_image()
         image_path = os.path.join(workdir, self.save_dir, self.filename)
         self.show_image(image_path)
+
     def do_smoth(self):
         self.image = self.image.transpose(SMOOTH)
         self.save_image()
@@ -97,9 +97,23 @@ class ImageProcessor:
         image_path = os.path.join(workdir, self.save_dir, self.filename)
         self.show_image(image_path)
 
+    def do_find_edges(self):
+        self.image = self.image.transpose(FIND_EDGES)
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
+
+    def do_unsharp_mask(self):
+        self.image = self.image.transpose(UnsharpMask)
+        self.save_image()
+        image_path = os.path.join(workdir, self.save_dir, self.filename)
+        self.show_image(image_path)
+
+
+
+
     def show_image(self):
         pass
-
 
 def filter_images(files, extensions):
     """esult=[]
@@ -111,11 +125,6 @@ def filter_images(files, extensions):
 
 # --------- або
     return [filename for filename in files for ext in extensions if filename.endswith(ext)]
-
-
-
-
-
 
 def choose_workdir():
     global workdir
@@ -131,14 +140,9 @@ def show_info():
     my_info.setText('Demo Photoshop\nVer.1.0=)')
 
 
-
 def show_shosen_image():
     if btn_files.currentRow() >= 0:
         filename = btn_files.currentItem().text()
-
-
-
-
 
 
 
@@ -162,7 +166,15 @@ btn_blur = QPushButton('Blur')
 btn_contour = QPushButton('Contour')
 btn_detail = QPushButton('Detail')
 
-
+#---------------------------------------------------
+btn_EDGE_ENHANCE = QPushButton('EDGE_ENHANCE')
+btn_right = QPushButton('Right')
+btn_flip = QPushButton('flip')
+btn_sharp = QPushButton('Sharp')
+btn_b_w = QPushButton('B / W')
+btn_blur = QPushButton('Blur')
+btn_contour = QPushButton('Contour')
+btn_detail = QPushButton('Detail')
 
 btn_info = QPushButton('INFO')
 
