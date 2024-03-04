@@ -11,7 +11,7 @@ https://pillow.readthedocs.io/en/stable/installation.html
 файли з роширенням ttf - файли зі шрифтами
 
 
-02 : 17 : 59
+02 : 25 : 18
 
 git add
 git commit -m "initial commit"

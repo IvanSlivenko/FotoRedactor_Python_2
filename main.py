@@ -8,7 +8,8 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PIL import Image
 from PIL.ImageFilter import BLUR, DETAIL, SMOOTH, CONTOUR, SHARPEN, \
-EDGE_ENHANCE, EDGE_ENHANCE_MORE, EMBOSS, FIND_EDGES, UnsharpMask
+EDGE_ENHANCE, EDGE_ENHANCE_MORE, EMBOSS, FIND_EDGES, UnsharpMask, \
+SMOOTH_MORE, GaussianBlur
 
 class ImageProcessor:
     def __init__(self):
@@ -167,14 +168,14 @@ btn_contour = QPushButton('Contour')
 btn_detail = QPushButton('Detail')
 
 #---------------------------------------------------
-btn_EDGE_ENHANCE = QPushButton('EDGE_ENHANCE')
-btn_right = QPushButton('Right')
-btn_flip = QPushButton('flip')
-btn_sharp = QPushButton('Sharp')
-btn_b_w = QPushButton('B / W')
-btn_blur = QPushButton('Blur')
-btn_contour = QPushButton('Contour')
-btn_detail = QPushButton('Detail')
+btn_edge_enhance = QPushButton('EDGE_ENHANCE')
+btn_edge_enhance_more = QPushButton('EDGE_ENHANCE_MORE')
+btn_emboss = QPushButton('EMBOSS')
+btn_find_edges = QPushButton('FIND_EDGES')
+btn_smooth = QPushButton('SMOOTH')
+btn_smooth_more = QPushButton('SMOOTH_MORE')
+btn_gaussian_blur = QPushButton('GaussianBlur')
+btn_unsharp_mask = QPushButton('UnsharpMask')
 
 btn_info = QPushButton('INFO')
 
@@ -199,22 +200,25 @@ row_tools1.addWidget(btn_b_w)
 row_tools1.addWidget(btn_contour)
 row_tools1.addWidget(btn_detail)
 
+#//////////////////////////////////////////
 row_tools2 = QHBoxLayout()
-row_tools2.addWidget(btn_left)
-row_tools2.addWidget(btn_right)
-row_tools2.addWidget(btn_flip)
-row_tools2.addWidget(btn_sharp)
-row_tools2.addWidget(btn_b_w)
-row_tools2.addWidget(btn_contour)
-row_tools2.addWidget(btn_detail)
+row_tools2.addWidget(btn_edge_enhance)
+row_tools2.addWidget(btn_edge_enhance_more)
+row_tools2.addWidget(btn_emboss)
+row_tools2.addWidget(btn_find_edges)
+row_tools2.addWidget(btn_smooth)
+row_tools2.addWidget(btn_smooth_more)
+row_tools2.addWidget(btn_gaussian_blur)
+row_tools2.addWidget(btn_unsharp_mask)
 
 col2.addLayout(row_tools1)
+col2.addLayout(row_tools2)
 
 row.addLayout(col1, 20)
 row.addLayout(col2, 80)
 
 win.setLayout(row)
-
+win.show()
 app.exec()
 
 
